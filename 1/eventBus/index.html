@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <comp1></comp1>
+    <comp2></comp2>
+  </div>
+
+  <script>
+var eventBus = new Vue()
+
+    new Vue({
+      el: '#app',
+      components: {
+       
+        comp1: {
+          template: '<div>a</div>',
+          created() {
+            eventBus.$on('brew', () => {
+              console.log('HTTP Error 418: I m a teapot')
+           })
+          }
+        },
+        
+        comp2: {
+          template: '<div>b</div>',
+          created() {
+            eventBus.$emit('brew')
+          }
+        }
+
+      }
+    })
+  </script>
+</body>
+
+</html>

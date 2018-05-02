@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    {{'hello world'| capitalize}}  <!-- 파이프 기호(|)는 이어 필터명이 나온다는것을 의미-->
+  </div>
+
+  <script>
+    Vue.filter('capitalize',function(string){
+      console.log(string)
+      var capitalFirst = string.charAt(0).toUpperCase();
+      var noCastail = string.slice(1,string.length)
+      return capitalFirst + noCastail
+    })
+    
+    var app = new Vue({
+      el: '#app'
+      
+    })
+  </script>
+</body>
+</html>
