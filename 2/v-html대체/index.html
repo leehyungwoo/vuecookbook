@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+
+
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <thanks gift="Batman" decoration="strong"></thanks>
+    </div>
+    <script>
+      Vue.component('thanks', {
+        functional: true,
+        render: function (createElement, context) {
+
+          let decorationGift = createElement(context.props.decoration, context.props.gift)
+          return createElement('p', ['Dear John, thanks for ', decorationGift])
+        },
+        props: {
+          gift: String,
+          decoration: String
+        }
+      })
+
+
+      new Vue({
+        el: '#app'
+      })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+     <label>Legs: <input v-model="legCount" type="range"></label><br/>
+     <label>Tops: <input @keyup.enter="update" :value="tableCount"></label>
+      <p>
+        we are going to build {{legCount}} leg
+        and assembly {{tableCount}} tables
+      </p>  
+  </div>
+
+  <script>
+  
+    new Vue({
+      el:'#app', 
+      data:{
+        legCount:0
+      },
+      computed:{
+        tableCount:{
+          get(){
+            return this.legCount/4
+          },
+          set(newV){
+            console.log('set'+newV)
+            this.legCount =newV * 4
+          }
+        }
+      },
+      methods:{
+        update(e){
+          this.tableCount = e.target.value;
+          console.log(this.tableCount )
+        }
+      }
+       
+    })
+  </script>
+</body>
+
+</html>

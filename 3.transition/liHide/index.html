@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+ 
+  <style>
+	.hide-enter-active,.hide-leave-active{
+		transition:opacity.5s
+	}
+
+	  .hide-leave-active{opacity: 0;}
+
+
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+   <h3>Syllabus</h3>
+   <transition-group name="hide" tag="ul">
+	<li v-for="(topic,i) in syllabus" :key="topic">
+		<button @click="completed(i)">Done</button> {{topic}}
+	</li>
+   </transition-group>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data:{
+		syllabus:[
+			'html',
+			'css',
+			'scratch',
+			'javascript',
+			'python'
+		]
+	  },
+	  methods:{
+		completed(i){
+			let index = i;
+			this.syllabus.splice(i,1)
+		}
+	  }
+    })
+  </script>
+</body>
+
+</html>

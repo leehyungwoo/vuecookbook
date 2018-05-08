@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Country</th>
+          <th>Electricity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="dam in damsSortByElectric">
+          <td>{{dam.name}}</td>
+          <td>{{dam.country}}</td>
+          <td>{{dam.electricity}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+      data: {
+        dams: [
+          { name: 'Nurek Dam', country: 'Tajikistan', electricity: 3200 },
+          { name: 'Three Gorges Dam', country: 'China', electricity: 22500 },
+          { name: 'Tarbela Dam', country: 'Pakistan', electricity: 3500 },
+          { name: 'Guri Dam', country: 'Venezuela', electricity: 10200 }
+        ]
+      },
+      computed:{
+        damsSortByElectric(){
+          return this.dams.sort((a,b)=>{
+            return b.electricity - a.electricity
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+<style>
+  .ascendig:after{
+    content:"(내림)"
+  }
+
+  .descending:after{
+    content:"(오름)"
+  }
+</style>
+
+</head>
+
+<body>
+
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Country</th>
+          <th v-bind:class="this.order === 1 ?  'ascendig':'descending'" @click="sort">Electricity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="dam in damsSortByElectric">
+          <td>{{dam.name}}</td>
+          <td>{{dam.country}}</td>
+          <td>{{dam.electricity}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+      data: {
+        dams: [
+          { name: 'Nurek Dam', country: 'Tajikistan', electricity: 3200 },
+          { name: 'Three Gorges Dam', country: 'China', electricity: 22500 },
+          { name: 'Tarbela Dam', country: 'Pakistan', electricity: 3500 },
+          { name: 'Guri Dam', country: 'Venezuela', electricity: 10200 }
+        ],
+        order:1    //means ascending
+      },
+      computed:{
+        damsSortByElectric(){
+          return this.dams.sort((a,b)=>{
+            return (b.electricity - a.electricity) * this.order
+          })
+        }
+      },
+      methods:{
+        sort(){
+          this.order = this.order*-1
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

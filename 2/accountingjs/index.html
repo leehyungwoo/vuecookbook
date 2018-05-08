@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdn.jsdelivr.net/accounting.js/0.3.2/accounting.js"></script>
+ 
+<style>
+  .price{text-align:right;}
+</style>
+</head>
+
+<body>
+
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Item
+          </th>
+          <th>
+            Price
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in inventory">
+          <td>{{item.name}}</td>
+          <td class="price">{{item.price | dollars}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+
+    Vue.filter('dollars',function(money){
+      return accounting.formatMoney(money)
+    })
+    new Vue({
+      el:'#app',
+      data:{
+        inventory:[
+          {name:'tape measure',price:'7'},
+          {name:'stamp',price:'0.01'},
+          {name:'shark tooth',price:'1.5'},
+          {name:'iphone',price:'999'}
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

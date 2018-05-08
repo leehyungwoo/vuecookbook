@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+ 
+  <style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 4s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+P {
+  display: block;
+  margin: 0;
+  position: absolute;
+  font-size: 3em;
+}
+</style>
+</head>
+
+<body>
+<img src="https://kr.vuejs.org/images/transition.png" width="500" alt="">
+<h2>v에 transition name</h2><br/>
+  <div id="app">
+    <button @click="kisses++">💋Kiss!</button>
+    <transition name="fade">
+      <p :key="transformation">{{emoji}}</p>
+    </transition>
+ 
+  </div>
+
+  <script>
+new Vue({
+  el: "#app",
+  data: {
+    kisses: 0
+  },
+  computed: {
+    transformation() {
+      if (this.kisses < 3) {
+        return "frog";
+      }
+      if (this.kisses >= 3 && this.kisses <= 5) {
+        return "princess";
+      }
+      if (this.kisses > 5) {
+        return "santa";
+      }
+    },
+    emoji() {
+      switch (this.transformation) {
+        case "frog":
+          return "🐸";
+        case "princess":
+          return "👸";
+        case "santa":
+          return "🎅🏿";
+      }
+    }
+  }
+});
+</script>
+</body>
+
+</html>

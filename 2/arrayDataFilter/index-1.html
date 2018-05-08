@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul>experiments
+      <li v-for="exp in nonPhysics(lowCost(this.experiments))">
+        {{exp.name}} {{exp.cost}}m
+      </li>
+    </ul>
+    <input type="text" v-model="term"> 
+ 
+  </div>
+
+  <script>
+
+    new Vue({
+      el: '#app',
+      data: {
+        experiments: [
+          { name: 'RHIC Ion Collider', cost: 650, field: 'Physics' },
+          { name: 'Neptune Undersea Observatory', cost: 100, field: 'Biology' },
+          { name: 'Violinist in the Metro', cost: 3, field: 'Psychology' },
+          { name: 'Large Hadron Collider', cost: 7700, field: 'Physics' },
+          { name: 'DIY Particle Detector', cost: 0, field: 'Physics' }
+        ],
+        term: ''
+      },
+      computed:{
+        filtered(){
+          return nonPhysics(lowCost(this.experiments)
+        }
+      },
+      methods:{
+        nonPhysics(list){
+          return list.filter((exp)=>{
+            return exp.field == 'Physics'
+          })
+        },
+        lowCost(list){
+          return list.filter((exp)=>{
+            return exp.cost <= 300;
+          })
+        }
+      }
+
+      })
+  </script>
+</body>
+
+</html>

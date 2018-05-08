@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+ 
+ 
+<style>
+   .warn{background:red}
+</style>
+</head>
+
+<body>
+
+  <div id="app">
+      <textarea v-model="memeText" :maxlength="limit" v-bind:class="{warn:longText}">
+      </textarea>
+      {{memeText.length}}
+  </div>
+
+  <script>
+   
+    new Vue({
+      el:'#app', 
+      data:{
+        memeText:'',
+        limit:50
+      },
+      computed:{
+        longText(){
+          if( this.memeText.length >= 50){ 
+            return true
+          } else {
+            return false;
+          }          
+        }
+      }
+      
+    })
+  </script>
+</body>
+
+</html>

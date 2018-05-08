@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+
+
+  <style>
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <form>
+      <fieldset>
+        <legend>Choose your country</legend>
+        <select v-model="clan">
+          <option v-for="(types,clan) in clans" >{{clan}}</option>
+        </select>
+
+        <select v-model="type">
+          <option v-for="(species,type) in clans[clan]" >{{type}}</option>
+        </select>
+    
+        <select v-if="clans[clan]" v-model="species">
+          <option v-for="(animals,species) in clans[clan][type]" >{{species}}</option>
+        </select>
+
+
+      </fieldset>
+    </form>
+
+  </div>
+
+  <script>
+
+
+
+    new Vue({
+      el: '#app',
+      data: {
+        clan: undefined,
+        type: undefined,
+        species:undefined,
+        clans: {
+          mamalia: {
+            'have finguers': {
+              human: 'human',
+              chimpanzee: 'chimpanzee'
+            },  
+            'fingerkess': {
+              cat: 'cat',
+              bear: 'bear'
+            }
+          },
+
+          birds: {
+            flying: {
+              eagle: 'eagle',
+              pidgeon: 'pidgeon'
+            },
+            'non flying': {
+              chicken: 'chicken'
+            }
+          }
+        } 
+       
+
+      }
+
+    })
+  </script>
+</body>
+
+</html>
